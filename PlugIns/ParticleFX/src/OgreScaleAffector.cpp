@@ -58,10 +58,10 @@ namespace Ogre {
     {
         ParticleIterator pi = pSystem->_getIterator();
         Particle *p;
-        Real ds;
 
         // Scale adjustments by time
-        ds = mScaleAdj * timeElapsed;
+        Real dsw = mScaleAdj * timeElapsed;
+        Real dsh = dsw * pSystem->getDefaultHeight() / pSystem->getDefaultWidth();
 
         Real NewWide, NewHigh;
 
@@ -71,14 +71,14 @@ namespace Ogre {
 
             if( p->hasOwnDimensions() == false )
             {
-                NewWide = pSystem->getDefaultWidth() + ds;
-                NewHigh = pSystem->getDefaultHeight() + ds;
+                NewWide = pSystem->getDefaultWidth() + dsw;
+                NewHigh = pSystem->getDefaultHeight() + dsh;
 
             }
             else
             {
-                NewWide = p->getOwnWidth()  + ds;
-                NewHigh = p->getOwnHeight() + ds;
+                NewWide = p->getOwnWidth()  + dsw;
+                NewHigh = p->getOwnHeight() + dsh;
             }
             if (NewWide < 0)
                 NewWide = 0;
@@ -86,7 +86,6 @@ namespace Ogre {
                 NewHigh = 0;
             p->setDimensions( NewWide, NewHigh ); 
         }
-
     }
     //-----------------------------------------------------------------------
     void ScaleAffector::setAdjust( Real rate )
