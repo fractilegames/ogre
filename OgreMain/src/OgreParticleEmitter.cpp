@@ -86,6 +86,7 @@ namespace Ogre
         mName = BLANKSTRING;
         mEmittedEmitter = BLANKSTRING;
         mEmitted = false;
+        mVelocity = Vector3::ZERO;
     }
     //-----------------------------------------------------------------------
     ParticleEmitter::~ParticleEmitter() 
@@ -114,6 +115,16 @@ namespace Ogre
     const Vector3& ParticleEmitter::getDirection(void) const
     { 
         return mDirection; 
+    }
+    //-----------------------------------------------------------------------
+    void ParticleEmitter::setVelocity(const Vector3& velocity)
+    {
+        mVelocity = velocity;
+    }
+    //-----------------------------------------------------------------------
+    const Vector3& ParticleEmitter::getVelocity(void) const
+    {
+        return mVelocity;
     }
     //-----------------------------------------------------------------------
     void ParticleEmitter::setUp(const Vector3& inUp) 
@@ -287,6 +298,7 @@ namespace Ogre
         }
 
         destVector *= scalar;
+        destVector += mVelocity;
     }
     //-----------------------------------------------------------------------
     Real ParticleEmitter::genEmissionTTL(void)

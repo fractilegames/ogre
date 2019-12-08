@@ -133,6 +133,9 @@ namespace Ogre {
         // NB. That doesn't imply that the emitter itself emits other emitters (that could or could not be the case)
         bool mEmitted;
 
+        /// Base velocity of the emitter (added to emitted particles)
+        Vector3 mVelocity;
+
         // NB Method below here are to help out people implementing emitters by providing the
         // most commonly used approaches as piecemeal methods
 
@@ -196,6 +199,15 @@ namespace Ogre {
 
         /** Returns the base direction of the emitter. */
         virtual const Vector3& getDirection(void) const;
+
+        /** Sets the base velocity of the emitter.
+        @param velocity
+            The base velocity added to particles emitted.
+        */
+        virtual void setVelocity(const Vector3& velocity);
+
+        /** Returns the base velocity of the emitter. */
+        virtual const Vector3& getVelocity(void) const;
 
         /** Sets the notional up vector of the emitter
         @remarks
