@@ -526,7 +526,7 @@ namespace Ogre {
     {
         if (mLightType == LT_DIRECTIONAL)
         {
-            tempSquareDist = 0;
+            tempSquareDist = -1.0f;
         }
         else
         {
